@@ -25,40 +25,15 @@ const getStateData = new Promise((resolve, reject) => {
 })
 
 Promise.all([getPaths, getStateData]).then(values => { 
-  const [pathsData, stateData] = values;
-  populateMap(pathsData, stateData)
+  const [pathsData, statesData] = values;
+  populateMap(pathsData, statesData)
 }, reason => {
   console.log(reason)
 });
 
-function populateMap(pathsData, stateData) {
+function populateMap(pathsData, statesData) {
 
-  function drawStates(htmlID, stateData, toolTip) {
-    
-    function mouseOver(pathData) {
-      // pathData: {id: stateAbbteviation, n: name, d: pathData}
-      
-      d3
-        .select("#tooltip")
-        .transition()
-        .duration(200)
-        .style("opacity", 0.9);
-
-      d3
-        .select("#tooltip")
-        .html(toolTip(pathData.n, stateData[pathData.id]))
-        .style("left", `${d3.event.pageX}px`)
-        .style("top", `${d3.event.pageY - 28}px`);
-    }
-
-    function mouseOut() {
-      d3
-        .select("#tooltip")
-        .transition()
-        .duration(500)
-        .style("opacity", 0);
-    }
-
+  function drawStates(htmlID, pathsData, statesData, activeField) {
     d3
       .select(htmlID)
       .selectAll(".state")
@@ -67,30 +42,49 @@ function populateMap(pathsData, stateData) {
       .append("path")
       .attr("class", "state")
       .attr("d", d => d.d )
-      .style("fill",  d => stateData[d.id].smokingColor)
+      .style("fill",  d => {
+        return activeField === "smoking" ? 
+          statesData[d.id].smokingColor
+          : statesData[d.id].lifeColor
+      })
       .on("mouseover", mouseOver)
       .on("mouseout", mouseOut);
+  }
+
+  function mouseOver(pathData) {
+    // pathData: {id: stateAbbteviation, n: name, d: pathData}
+    d3
+      .select("#tooltip")
+      .transition()
+      .duration(200)
+      .style("opacity", 0.9);
+
+    d3
+      .select("#tooltip")
+      .html(tooltipHtml(pathData.n, statesData[pathData.id]))
+      .style("left", `${d3.event.pageX}px`)
+      .style("top", `${d3.event.pageY - 28}px`);
+  }
+
+  function mouseOut() {
+    d3
+      .select("#tooltip")
+      .transition()
+      .duration(500)
+      .style("opacity", 0);
   }
 
   function tooltipHtml(stateName, stateData) {
     /* function to create html content string in tooltip div. */
     return (
-      `<h4>${stateName}</h4>` +
-
-      "<table>" +
-      
-      "<tr><td>% Smokers</td><td>" +
-      stateData.percentSmokers +
-      "</td></tr>" +
-      
-      "<tr><td>Life Exp</td><td>" +
-      stateData.lifeExpectancy +
-      "</td></tr>" +
-
-      "</table>"
+      `<h4>${stateName}</h4>
+      <table>
+      <tr><td>% Smokers</td><td>${stateData.percentSmokers}</td></tr>
+      <tr><td>Life Expectancy</td><td>${stateData.lifeExpectancy}</td></tr>
+      </table>`
     );
   }
 
   /* draw states on html id #statesvg */
-  drawStates("#statesvg", stateData, tooltipHtml);
+  drawStates("#statesvg", pathsData, statesData, activeField="life");
 }

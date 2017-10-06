@@ -1,0 +1,4 @@
+Inserting
+INSERT INTO article (ArticleTitle, ArticleURL, ArticleThumbnailURL, CommentPageURL, PostTime, AverageCompositeScore, AverageX, AverageY) VALUES ('test-title-2','test-url-2','test-thumbnail-url-2', 'test-comment-page-url-2', '4:00 pm', 44,33,22);
+INSERT INTO comment (Article_ID, CommentText, AverageCompositeScore, AverageX, AverageY) VALUES (2, 'this is some fake comment text', 32,50,98);
+INSERT INTO vote (Article_ID, Comment_ID, VoteTime, CompositeScore, X, Y) VALUES (3,4,'5/16/17', 35,46,67);

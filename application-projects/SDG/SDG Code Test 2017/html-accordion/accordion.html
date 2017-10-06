@@ -1,0 +1,60 @@
+<!-- https://www.w3schools.com/howto/howto_js_accordion.asp -->
+
+
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="accordion-styles.css">
+</head>
+
+<body>
+
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+        <p>Lorem ipsum ...</p>
+    </div>
+
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+        <p>Lorem ipsum ...</p>
+    </div>
+
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+        <p>Lorem ipsum ...</p>
+    </div>
+
+    <script>
+        
+        const l = console.log;
+        
+        var acc = document.getElementsByClassName("accordion");
+
+        l('acc --> ', acc)
+
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                // add/remove the 'active' class on the clicked element
+                this.classList.toggle("active");
+                // nextElementSibling returns element immediately following the specified element, in the same tree level
+                var panel = this.nextElementSibling;
+                
+                l('panel --> ', panel)
+
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

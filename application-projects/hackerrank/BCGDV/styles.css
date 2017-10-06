@@ -1,0 +1,11 @@
+
+.container {
+  width: 100px;
+  background-color: blue;
+  display: inline-flex;
+  flex-direction: row;
+}
+.col {
+  background-color: red;
+  flex: 1;
+}

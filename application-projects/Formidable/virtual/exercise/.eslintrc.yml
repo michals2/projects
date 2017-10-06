@@ -1,0 +1,6 @@
+---
+  "root": true
+
+  "extends":
+    - "formidable/configurations/es6-react"
+    - "formidable/configurations/es6-browser"

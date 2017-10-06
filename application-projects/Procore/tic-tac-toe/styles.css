@@ -1,0 +1,20 @@
+:root {
+  --side-length: 90px;
+}
+
+.cell {
+  width: var(--side-length);
+  height: var(--side-length);
+  /* display: inline-flex; */
+  /* align-items: center;
+  justify-content: center; */
+  border: 1px solid black;
+}
+
+.row {
+  display: flex;
+}
+
+.error-status {
+  display: none;
+}

@@ -1,0 +1,66 @@
+
+.Board {
+  height: 700px;
+  width: 700px;
+  position: relative;
+}
+
+.Row {
+  display: flex;
+  height: 50px;
+  width: 600px;
+  position: absolute;
+  /* bottom:0;
+  right:0; */
+}
+
+.Square {
+  border: 1px solid black;
+  display: inline-block;
+  height: 100%;
+  width: 50px;
+  font-size: 10px;
+}
+
+.Row-1 {
+  /* transform: translate(100px, 550px); */
+  bottom: 0;
+  right: 0;
+}
+
+.Row-2 {
+  transform-origin: 0% 0%;
+  transform: rotate(-90deg);
+  left: 0;
+  bottom: 0;
+}
+
+.Row-3 {
+  /* transform-origin: 180%;
+  transform: rotate(180deg); */
+  right: 0;
+  left: 0;
+}
+
+.Row-4 {
+  /* transform-origin: 0% 0%;
+  transform: rotate(270deg); */
+  right: 0;
+  bottom: 0;
+}
+
+.User-Portal {
+  border: 1px solid black;
+  display: inline-block;
+  left: 0;
+}
+
+button {
+  margin: 10px;
+  height: 30px;
+  width: 60px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}

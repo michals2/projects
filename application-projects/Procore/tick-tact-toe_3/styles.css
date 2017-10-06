@@ -1,0 +1,17 @@
+.cell {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+}
+
+.row {
+  display: flex;
+}
+
+#winner-message {
+  display: none;
+}
+
+#winner-message.winner {
+  display: inline-block;
+}
